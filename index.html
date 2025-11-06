@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tango — Música de Argentina</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#c0392b;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      background: linear-gradient(180deg,#071226 0%, #0b1622 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+    }
+    .wrap{
+      width:100%;
+      max-width:1000px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:28px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+    }
+
+    header{
+      grid-column:1 / -1;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:6px;
+    }
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#b91c1c,#ff6f61);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:20px;
+      color:white;
+      box-shadow: 0 6px 18px rgba(200,30,30,0.18);
+    }
+    h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:0.2px;
+    }
+    p.lead{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .main{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .info{
+      background:var(--glass);
+      padding:14px;
+      border-radius:12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .info img{
+      width:160px;
+      height:110px;
+      object-fit:cover;
+      border-radius:8px;
+      flex-shrink:0;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .info .txt{
+      font-size:15px;
+    }
+    .txt small{ color:var(--muted); display:block; margin-top:6px; font-size:13px; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:10px;
+      padding:10px;
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .card h3{
+      margin:0;
+      font-size:14px;
+    }
+    .card p{ margin:0; color:var(--muted); font-size:13px; }
+
+    aside{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .map, .video{
+      background:var(--card);
+      border-radius:12px;
+      padding:10px;
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    iframe{
+      width:100%;
+      border-radius:8px;
+      border:0;
+      height:180px;
+      background:#0a0f15;
+    }
+
+    footer{
+      grid-column:1 / -1;
+      margin-top:6px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media (max-width:900px){
+      .wrap{ grid-template-columns: 1fr; padding:18px; }
+      aside{ order:3; }
+      .main{ order:2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <header>
+      <div class="logo">AR</div>
+      <div>
+        <h1>Tango — Música de Argentina</h1>
+        <p class="lead">Proyecto escolar — breve presentación</p>
+      </div>
+    </header>
+
+    <section class="main">
+      <div class="info">
+        <!-- 🔴 Coloca aquí tu imagen del tango -->
+        <img src="https://via.placeholder.com/300x200?text=Imagen+de+Tango" alt="Imagen representativa del tango argentino">
+        <div class="txt">
+          <strong>Tango argentino</strong>
+          <p>
+            El <strong>tango</strong> nació en Buenos Aires a fines del siglo XIX. Es una música llena de emoción, elegancia y pasión. Se baila en pareja y se toca con bandoneón, violín y piano. El tango representa el alma de Argentina y es famoso en todo el mundo.
+          </p>
+          <small>Texto corto en español simple para el trabajo.</small>
+        </div>
+      </div>
+
+      <article class="card">
+        <h3>Características del tango</h3>
+        <p>El ritmo del tango es lento y marcado. Sus letras hablan de amor, nostalgia y la vida en la ciudad. Su baile es elegante y expresivo.</p>
+      </article>
+    </section>
+
+    <aside>
+      <div class="map">
+        <h3 style="margin:0;font-size:14px;">Mapa político — Argentina</h3>
+        <iframe
+          src="https://www.google.com/maps?q=Argentina&output=embed"
+          title="Mapa de Argentina"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="video">
+        <h3 style="margin:0;font-size:14px;">Ejemplo de tango (video)</h3>
+        <!-- 🔴 Reemplaza VIDEO_ID por el ID del video de YouTube -->
+        <iframe
+  src="https://www.youtube.com/embed/1G5C3Ckz3F8"
+  title="Tango en Buenos Aires"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+
+        <p style="margin:0;color:var(--muted);font-size:13px;">Coloca aquí un video corto que muestre el baile o la música del tango.</p>
+      </div>
+    </aside>
+
+    <footer>
+      <div>Grupo: <strong>Tango — Argentina</strong></div>
+      <div>Entrega: <strong>07/11</strong></div>
+    </footer>
+  </div>
+</body>
+</html>
