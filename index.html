@@ -1,296 +1,476 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcos</title>
+    <title>Tango Argentino - Música y Cultura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #c0392b;
+            --muted: #9aa4b2;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 14px;
+            --text: #e6eef6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0c1a2d 0%, #1e3a5f 100%);
-            color: #e0e0e0;
-            line-height: 1.6;
+            margin: 0;
             min-height: 100vh;
+            background: linear-gradient(180deg, #071226 0%, #0b1622 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(2, 6, 23, 0.6);
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 24px;
+            margin: 20px 0;
         }
 
         header {
-            text-align: center;
-            padding: 40px 0;
-            background: rgba(13, 27, 42, 0.8);
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #4fc3f7;
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #90caf9;
-            opacity: 0.9;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-
-        .card {
-            background: rgba(13, 27, 42, 0.9);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            border-color: rgba(79, 195, 247, 0.4);
-        }
-
-        .image-container {
-            width: 100%;
-            height: 250px;
-            background: #1a3a5f;
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #b91c1c, #ff6f61);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
+            font-weight: 700;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 6px 18px rgba(200, 30, 30, 0.18);
         }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 0.2px;
+            background: linear-gradient(to right, #ff6f61, #b91c1c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .lead {
+            margin: 6px 0 0 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .main-content {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
             transition: transform 0.3s ease;
         }
 
-        .card:hover .image-container img {
-            transform: scale(1.05);
+        .info-card:hover {
+            transform: translateY(-5px);
         }
 
-        .card-content {
-            padding: 25px;
+        .tango-image {
+            width: 200px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: #07101a;
         }
 
-        .card-title {
-            font-size: 1.4rem;
-            color: #4fc3f7;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .info-text {
+            font-size: 16px;
         }
 
-        .card-subtitle {
-            font-size: 1.1rem;
-            color: #90caf9;
-            margin-bottom: 12px;
+        .info-text strong {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .info-text small {
+            color: var(--muted);
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(200, 30, 30, 0.2);
+            box-shadow: 0 5px 15px rgba(200, 30, 30, 0.1);
+        }
+
+        .feature-card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .instruments {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .instrument {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .instrument i {
+            color: var(--accent);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .map-container, .video-container {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .map-container h3, .video-container h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        iframe {
+            width: 100%;
+            border-radius: 8px;
+            border: 0;
+            background: #0a0f15;
+        }
+
+        .video-note {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .video-note a {
+            color: var(--accent);
+            text-decoration: none;
             font-weight: 500;
         }
 
-        .location {
+        .video-note a:hover {
+            text-decoration: underline;
+        }
+
+        .timeline {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+        }
+
+        .timeline h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .timeline-item {
             display: flex;
-            align-items: center;
-            color: #b3e5fc;
             margin-bottom: 15px;
-            font-size: 0.95rem;
+            position: relative;
+            padding-left: 20px;
         }
 
-        .location::before {
-            content: "📍";
-            margin-right: 8px;
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
-        .description {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            opacity: 0.9;
+        .timeline-year {
+            font-weight: bold;
+            color: var(--accent);
+            min-width: 80px;
+        }
+
+        .timeline-content {
+            color: var(--muted);
         }
 
         footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            color: #90caf9;
-            border-top: 1px solid rgba(79, 195, 247, 0.3);
+            grid-column: 1 / -1;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 14px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .card-content {
+        .footer-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
                 padding: 20px;
             }
+
+            .info-card {
+                flex-direction: column;
+            }
+
+            .tango-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .instruments {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
             .container {
                 padding: 15px;
             }
-            
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
+
             header {
-                padding: 30px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 24px;
             }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Arcos</h1>
-            <p class="subtitle">Tipos de arcos, e sua importância estrutural e visual.</p>
+        <header class="fade-in">
+            <div class="logo" aria-hidden="true">AR</div>
+            <div>
+                <h1>Tango — Música de Argentina</h1>
+                <p class="lead">Proyecto escolar — breve presentación</p>
+            </div>
         </header>
 
-        <div class="gallery">
-            <!-- Card 1 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/mazzei.png" alt="igreja mazzei">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Paróquia Menino Jesus</h3>
-                    <p class="card-subtitle">Igreja católica</p>
-                    <div class="location">Av. Mazzei, 491 - Tucuruvi, São Paulo - SP, 02310-000</div>
-                    <p class="description">Arcos: semicirculares.<br> Importância do arco: Os arcos sustentam, embelezam e permitem a passagem de luz e som.</p>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/estadio.png" alt="Descrição da imagem 2">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Ginásio Poliesportivo Wlamir Marques</h3>
-                    <p class="card-subtitle">Quadra de esportes</p>
-                    <div class="location">R. São Jorge, 777 - Tatuapé, São Paulo - SP, 03086-035</div>
-                    <p class="description">Tipo de arco: elíptico.<br> Ele distribui o peso da cobertura de forma equilibrada, permitindo grandes vãos sem colunas.
-Além disso, melhora a estética, a iluminação e a acústica do ginásio.</p>
+        <section class="main-content">
+            <div class="info-card fade-in">
+                <img src="https://images.unsplash.com/photo-1543084554-7af3c5d44c42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                     alt="Pareja bailando tango" class="tango-image">
+                <div class="info-text">
+                    <strong>Breve historia del Tango</strong>
+                    <p>
+                        El <strong>tango</strong> nació en Buenos Aires a fines del siglo XIX. Es una música llena de emoción, elegancia y pasión. Se baila en pareja y se toca con bandoneón, violín y piano. El tango representa el alma de Argentina y es conocido en todo el mundo.
+                    </p>
+                    <small>Texto en español simple para el trabajo escolar.</small>
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/hotel.png" alt="hotel">
+            <article class="feature-card fade-in delay-1">
+                <h3>Características del tango</h3>
+                <p>Ritmo marcado y elegante. Letras sobre amor, nostalgia y la vida urbana. Instrumentos destacados:</p>
+                <div class="instruments">
+                    <div class="instrument"><i class="fas fa-music"></i> Bandoneón</div>
+                    <div class="instrument"><i class="fas fa-music"></i> Piano</div>
+                    <div class="instrument"><i class="fas fa-music"></i> Violín</div>
+                    <div class="instrument"><i class="fas fa-music"></i> Guitarra</div>
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title">Hotel Glória Resort & Convention</h3>
-                    <p class="card-subtitle">Hotel</p>
-                    <div class="location">Av. Camilo Soares, 590, Caxambu - MG, 37440-000</div>
-                    <p class="description">Tipo dos arcos: semicirculares.<br> Os arcos da fachada do hotel são importantes porque sustentam a estrutura e, ao mesmo tempo, valorizam o estilo arquitetônico, dando ao prédio um ar clássico, sólido e acolhedor.</p>
+            </article>
+
+            <div class="timeline fade-in delay-2">
+                <h3>Evolución del Tango</h3>
+                <div class="timeline-item">
+                    <div class="timeline-year">1880s</div>
+                    <div class="timeline-content">Nacimiento en los barrios de Buenos Aires</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1910s</div>
+                    <div class="timeline-content">La Guardia Vieja - primera generación</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1920s</div>
+                    <div class="timeline-content">Edad de Oro del Tango</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2009</div>
+                    <div class="timeline-content">Declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO</div>
                 </div>
             </div>
+        </section>
 
-            <!-- Card 4 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/museuindependencia.png" alt="independencia">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Museu do Ipiranga</h3>
-                    <p class="card-subtitle">Museu</p>
-                    <div class="location">Parque da Independência - Ipiranga, São Paulo - SP, 04263-000</div>
-                    <p class="description">Tipo dos arcos: semicirculares.<br> Arcos são como grandes portas arredondadas que tornam o prédio forte e permitem criar espaços abertos. Eles dão ao edifício uma aparência antiga e importante, como os monumentos de Roma. No museu, eles mostram nobreza e estabilidade para um lugar tão histórico.</p>
-                </div>
+        <aside class="sidebar">
+            <div class="map-container fade-in delay-1">
+                <h3>Mapa de Argentina</h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26097205.82642883!2d-81.31843145000001!3d-37.01720569999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaf5f5fdc667%3A0x3d2f77992af00fa8!2sArgentina!5e0!3m2!1ses-419!2sar!4v1693426782454!5m2!1ses-419!2sar"
+                    title="Mapa de Argentina"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    height="200">
+                </iframe>
             </div>
 
-            <!-- Card 5 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/igrejapaulista.png" alt="paulista">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Capela de Santa Catarina</h3>
-                    <p class="card-subtitle">Centro religioso</p>
-                    <div class="location">Avenida Paulista, 200</div>
-                    <p class="description">Tipo de arcos: Arco Quebrado (ou Ogival) <br> Ele distribui o peso do teto de forma muito eficiente, garantindo grandes vãos e maior estabilidade ao longo do tempo.
-
-Visualmente, ele direciona o olhar para cima, conferindo à entrada um sentimento de elevação e espiritualidade.</p>
-                </div>
+            <div class="video-container fade-in delay-2">
+                <h3>Ejemplo musical</h3>
+                <iframe 
+                    width="100%" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/JglmXFx0Pz4?si=WO2t17FwtRzMWZOF" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+                <p class="video-note">
+                    Si el video no se carga, puedes verlo directamente en 
+                    <a href="https://youtu.be/JglmXFx0Pz4" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </p>
             </div>
+        </aside>
 
-            <!-- Card 6 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/nossasenhora.png" alt="nss">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Santuário Nacional de Nossa Senhora Aparecida</h3>
-                    <p class="card-subtitle">Santuário religioso (visão externa)</p>
-                    <div class="location">Av. Dr. Júlio Prestes, s/n - Ponte Alta, Aparecida - SP, 12570-000</div>
-                    <p class="description">Arcos grande: elíptico.<br> Arcos pequenos: Semicirculares.<br> A importância, vai além de estrutural, mas também é estético, os arcos criam uma sensação de leveza e grandiosidade.</p>
-                </div>
+        <footer class="fade-in delay-3">
+            <div>Grupo: <strong>Tango — Argentina</strong></div>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-users"></i> Integrantes</a>
+                <a href="#"><i class="fas fa-calendar-alt"></i> Fecha: 07/11</a>
             </div>
-
-            <!-- Card 7 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/nossasenhora2.png" alt="nss2">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Santuário Nacional de Nossa Senhora Aparecida</h3>
-                    <p class="card-subtitle">Santuário religioso (visão externa)</p>
-                    <div class="location">Av. Dr. Júlio Prestes, s/n - Ponte Alta, Aparecida - SP, 12570-000</div>
-                    <p class="description">Tipo dos arcos: semicirculares (ligeiramente rebaixado) <br> Os Arcos Plenos e Rebaixados criam aberturas e garantem a solidez do vasto edifício.
-
-Eles são essenciais para suportar o peso e permitir grandes portais de passagem.
-
-Sua forma simples e robusta reforça a força e a monumentalidade da construção.</p>
-                </div>
-            </div>
-
-            <!-- Card 8 -->
-            <div class="card">
-                <div class="image-container">
-                    <img src="imagens/nossasenhora3.png" alt="nss3">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Santuário Nacional de Nossa Senhora Aparecida</h3>
-                    <p class="card-subtitle">Santuário religioso (visão interna)</p>
-                    <div class="location">Av. Dr. Júlio Prestes, s/n - Ponte Alta, Aparecida - SP, 12570-000</div>
-                    <p class="description">Tipos de arcos: arco pleno e arco rebaixado. <br> Estes Arcos Plenos são cruciais para a sustentação da imensa cúpula e das paredes, permitindo o vasto espaço interno. Eles criam uma sensação de grandiosidade e acolhimento, guiando o olhar e o fluxo de pessoas pelo ambiente. Sua forma robusta confere solidez e monumentalidade ao santuário, transmitindo uma sensação de segurança e perenidade.</p>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; By: Flávio, Gustavo, Laura, Bernardo.<br> doc: https://pastebin.com/raw/yjk1mt0n</p>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+            });
+            
+            setTimeout(() => {
+                elements.forEach(el => {
+                    el.classList.add('fade-in');
+                });
+            }, 100);
+        });
+    </script>
 </body>
 </html>
