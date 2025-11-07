@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tango — Música de Argentina</title>
+  <meta name="description" content="Proyecto escolar: breve presentación del tango argentino.">
   <style>
     :root{
       --bg:#0f1724;
@@ -15,6 +16,7 @@
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       min-height:100vh;
@@ -31,7 +33,7 @@
     }
     .wrap{
       width:100%;
-      max-width:1000px;
+      max-width:1100px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:18px;
       padding:28px;
@@ -97,6 +99,7 @@
       border-radius:8px;
       flex-shrink:0;
       border:1px solid rgba(255,255,255,0.04);
+      background:#07101a;
     }
     .info .txt{
       font-size:15px;
@@ -120,6 +123,7 @@
     }
     .card p{ margin:0; color:var(--muted); font-size:13px; }
 
+    /* right column */
     aside{
       display:flex;
       flex-direction:column;
@@ -134,6 +138,7 @@
       flex-direction:column;
       gap:8px;
     }
+    /* responsive iframe: let CSS control sizes (no fixed width/height attributes) */
     iframe{
       width:100%;
       border-radius:8px;
@@ -152,6 +157,7 @@
       font-size:13px;
     }
 
+    /* small screens */
     @media (max-width:900px){
       .wrap{ grid-template-columns: 1fr; padding:18px; }
       aside{ order:3; }
@@ -162,61 +168,74 @@
 <body>
   <div class="wrap" role="main">
     <header>
-      <div class="logo">AR</div>
+      <div class="logo" aria-hidden="true">AR</div>
       <div>
         <h1>Tango — Música de Argentina</h1>
         <p class="lead">Proyecto escolar — breve presentación</p>
       </div>
     </header>
 
-    <section class="main">
-      <div class="info">
-        <!-- 🔴 Coloca aquí tu imagen del tango -->
-        <img src="https://via.placeholder.com/300x200?text=Imagen+de+Tango" alt="Imagen representativa del tango argentino">
+    <section class="main" aria-labelledby="about-title">
+      <div class="info" id="about">
+        <!-- Placeholder de imagen do tango: substitua 'IMAGEN-TANGO.jpg' pelo arquivo real -->
+        <img src="IMAGEN-TANGO.jpg" alt="Imagen representativa del tango argentino (placeholder)">
         <div class="txt">
-          <strong>Tango argentino</strong>
+          <strong id="about-title">Breve texto</strong>
           <p>
-            El <strong>tango</strong> nació en Buenos Aires a fines del siglo XIX. Es una música llena de emoción, elegancia y pasión. Se baila en pareja y se toca con bandoneón, violín y piano. El tango representa el alma de Argentina y es famoso en todo el mundo.
+            El <strong>tango</strong> nació en Buenos Aires a fines del siglo XIX. Es una música llena de emoción, elegancia y pasión. Se baila en pareja y se toca con bandoneón, violín y piano. El tango representa el alma de Argentina y es conocido en todo el mundo.
           </p>
-          <small>Texto corto en español simple para el trabajo.</small>
+          <small>Texto en español simple para el trabajo.</small>
         </div>
       </div>
 
-      <article class="card">
-        <h3>Características del tango</h3>
-        <p>El ritmo del tango es lento y marcado. Sus letras hablan de amor, nostalgia y la vida en la ciudad. Su baile es elegante y expresivo.</p>
+      <article class="card" aria-labelledby="carac-title">
+        <h3 id="carac-title">Características del tango</h3>
+        <p>Ritmo marcado y elegante. Letras sobre amor, nostalgia y la vida urbana. Instrumentos destacados: bandoneón, piano, violín y guitarra.</p>
       </article>
     </section>
 
     <aside>
-      <div class="map">
-        <h3 style="margin:0;font-size:14px;">Mapa político — Argentina</h3>
+      <div class="map" aria-labelledby="map-title">
+        <h3 id="map-title" style="margin:0;font-size:14px;">Mapa político — Argentina</h3>
+        <!-- Mapa político (Google Maps). Funciona em HTTPS (Vercel). -->
         <iframe
           src="https://www.google.com/maps?q=Argentina&output=embed"
           title="Mapa de Argentina"
           loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
 
-      <div class="video">
-        <h3 style="margin:0;font-size:14px;">Ejemplo de tango (video)</h3>
-        <!-- 🔴 Reemplaza VIDEO_ID por el ID del video de YouTube -->
+      <div class="video" aria-labelledby="video-title">
+        <h3 id="video-title" style="margin:0;font-size:14px;">Ejemplo musical (video)</h3>
+        <!-- Embed de YouTube: use enlace embed (ID del vídeo).
+             Nota: algunos vídeos sólo funcionan em HTTPS (ex.: Vercel). -->
         <iframe
-  src="https://www.youtube.com/embed/1G5C3Ckz3F8"
-  title="Tango en Buenos Aires"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
-
-
-        <p style="margin:0;color:var(--muted);font-size:13px;">Coloca aquí un video corto que muestre el baile o la música del tango.</p>
+          src="https://www.youtube.com/embed/JglmXFx0Pz4?si=WO2t17FwtRzMWZOF"
+          title="Video de tango argentino"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+        <p style="margin:0;color:var(--muted);font-size:13px;">
+          Si el video no aparece en local (http://localhost), prueba en el sitio publicado (Vercel) o haz clic en:
+          <a href="https://youtu.be/JglmXFx0Pz4" target="_blank" rel="noopener noreferrer" style="color:var(--accent); text-decoration:none;">Ver en YouTube</a>
+        </p>
       </div>
     </aside>
 
     <footer>
       <div>Grupo: <strong>Tango — Argentina</strong></div>
-      <div>Entrega: <strong>07/11</strong></div>
+      <div>Fecha de entrega: <strong>07/11</strong></div>
     </footer>
   </div>
+
+  <script>
+    // Notas rápidas de verificación (útil en aula):
+    // 1) Suba este arquivo ao Vercel para testar o iframe do YouTube (HTTPS requerido para alguns vídeos).
+    // 2) Substitua "IMAGEN-TANGO.jpg" pela imagem real (mesma pasta ou URL).
+    // 3) Para trocar a imagem/video pela consola:
+    //    document.querySelector('.info img').src = 'URL_DA_IMAGEM';
+    //    document.querySelector('.video iframe').src = 'https://www.youtube.com/embed/SEU_VIDEO_ID';
+  </script>
 </body>
 </html>
